@@ -1,0 +1,63 @@
+<?php
+
+namespace MyBlog\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Blogpostcomments
+ *
+ * @ORM\Table(name="blogpostcomments", indexes={@ORM\Index(name="IX_bpc_blogpost_id", columns={"blogpost_id"})})
+ * @ORM\Entity
+ */
+class Blogpostcomments
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text", nullable=false)
+     */
+    private $text;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="userId", type="integer", nullable=false)
+     */
+    private $userid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="created", type="integer", nullable=false)
+     */
+    private $created;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="state", type="integer", nullable=false)
+     */
+    private $state;
+
+    /**
+     * @var \MyBlog\Entity\Blogposts
+     *
+     * @ORM\ManyToOne(targetEntity="MyBlog\Entity\Blogposts")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="blogpost_id", referencedColumnName="id")
+     * })
+     */
+    private $blogpost;
+
+
+}
